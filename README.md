@@ -6,3 +6,7 @@
     3. Install Redux & Redux Toolkit 
     4. Create Store & 1st Slice as appSlice
     5. Provide Store to Application & Check Weather We haved Succesfully Setup Redux
+
+    6. Head Component Development & SideMenu Development
+    7. SideMenu Close Feature
+    8.  
