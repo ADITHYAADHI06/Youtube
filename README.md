@@ -7,6 +7,11 @@
     4. Create Store & 1st Slice as appSlice
     5. Provide Store to Application & Check Weather We haved Succesfully Setup Redux
 
-    6. Head Component Development & SideMenu Development
+    6. Head & SideMenu Development
     7. SideMenu Close Feature
-    8.  
+    8. Fecth Youtube data
+    9. Button List Click Handling
+   10. Design of Video Card
+   
+
+

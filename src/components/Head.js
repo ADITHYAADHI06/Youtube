@@ -12,7 +12,7 @@ const Head = () => {
         dispatch(toggleSidebar());
     }
     return (
-        <div className='grid h-[10vh] grid-flow-col px-6 py-2 shadow-lg'>
+        <div className='grid h-[10vh] grid-flow-col grid-cols-12 px-6 py-2 shadow-lg'>
             <div className='flex col-span-1 my-auto'>
                 <img
                     onClick={() => toggleMenuHandler()}
