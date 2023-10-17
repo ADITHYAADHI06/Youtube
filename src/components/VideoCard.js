@@ -23,7 +23,7 @@ const VideoCard = ({ video }) => {
             <div className='title'>
                 <h1 className='text-xl font-semibold'>{title}</h1>
                 <p className='text-gray-700 '>{channelTitle}</p>
-                <p className='text-gray-700 '><span>{viewCount % 100}K Views</span> <span>*</span> <sapn>3 days ago</sapn></p>
+                <p className='text-gray-700 '><span>{viewCount % 100}K Views</span> <span>*</span> <span>3 days ago</span></p>
             </div>
         </Link>
     )

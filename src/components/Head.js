@@ -1,17 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleSidebar } from '../store/appSlice';
 import { BsSearch } from 'react-icons/bs';
-
-
+import { YOUTUBE_AUTOSUGGESTIONS_API } from '../utils/constants';
 
 const Head = () => {
-
+    const [searchText, SetsearchText] = useState("");
+    const [searchSuggetions, SetsearchSuggetions] = useState([]);
+    const [showAutoSuggetions, SetshowAutoSuggetions] = useState(false);
     const dispatch = useDispatch();
 
     const toggleMenuHandler = () => {
         dispatch(toggleSidebar());
     }
+    const getSuggestions = async () => {
+        // console.log("called - " + searchText);
+        const res = await fetch(YOUTUBE_AUTOSUGGESTIONS_API + searchText);
+        const data = await res.json();
+        SetsearchSuggetions(data[1]);
+    }
+
+    useEffect(() => {
+        let timer = setTimeout(() => { getSuggestions() }, 200)
+        return () => {
+            clearTimeout(timer);
+        }
+    }, [searchText]);
+
     return (
         <div className='grid h-[10vh] grid-flow-col grid-cols-12 px-6 py-2 shadow-xl shadow-slate-200'>
             <div className='flex col-span-1 my-auto'>
@@ -29,12 +44,24 @@ const Head = () => {
             </div>
             <div className='col-span-10 flex justify-center my-auto mt-2'>
                 <div className='s-input w-6/12'>
-                    <input type='text' className='px-5 border border-gray-400 rounded-l-full h-full w-full' placeholder='Search' />
+                    <input type='text' className='px-5 border border-gray-400 rounded-l-full h-full w-full' onFocus={() => { SetshowAutoSuggetions(true); }} onBlur={() => { SetshowAutoSuggetions(false) }} onChange={(e) => { SetsearchText(e.target.value) }} value={searchText} placeholder='Search' />
                 </div>
+                {
+                    searchSuggetions && showAutoSuggetions && (
+                        <div className='absolute top-16 mr-10 w-[490px] bg-white text-black'>
+                            <ul>
+                                {searchSuggetions.map((suggestion, i) => {
+                                    return <li key={i} >🔍 {suggestion} </li>
+                                })}
+                            </ul>
+                        </div>)
+                }
+
                 <button className="bg-gray-200 rounded-r-full px-4 pr-5 py-3  ">
                     <BsSearch />
                 </button>
             </div>
+
             <div className='col-span-1 ml-auto p-0 mt-1'>
                 <img
                     className="h-14 my-auto"
