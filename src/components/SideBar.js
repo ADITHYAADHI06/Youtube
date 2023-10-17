@@ -9,8 +9,8 @@ const SideBar = () => {
         return null
     }
     return (
-        <div className='w-[40vw] p-4 px-7 h-[90vh] shadow-lg font-bold'>
-            <ul>
+        <div className='w-60 p-4 px-7 h-[90vh] shadow-lg font-bold'>
+            <ul >
                 <li>Home</li>
                 <li>Sub</li>
                 <li>History</li>

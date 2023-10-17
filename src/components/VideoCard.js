@@ -1,12 +1,22 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { toggleSidebar } from '../store/appSlice';
+
 
 const VideoCard = ({ video }) => {
-    const { snippet, statistics } = video;
+
+    const dispatch = useDispatch();
+    const toggleMenuHandler = () => {
+        dispatch(toggleSidebar());
+    }
+
+    const { snippet, statistics, id } = video;
     const { title, thumbnails, channelTitle, publishedAt, channelId } = snippet;
     const { viewCount } = statistics;
 
     return (
-        <div className='card col-span-3 '>
+        <Link to={`watch?v=${id}`} onClick={toggleMenuHandler} className='card col-span-3 '>
             <div className='h-56 '>
                 <img className='h-full w-full rounded-2xl' src={thumbnails?.maxres?.url} alt="thumbnail" />
             </div>
@@ -15,7 +25,7 @@ const VideoCard = ({ video }) => {
                 <p className='text-gray-700 '>{channelTitle}</p>
                 <p className='text-gray-700 '><span>{viewCount % 100}K Views</span> <span>*</span> <sapn>3 days ago</sapn></p>
             </div>
-        </div>
+        </Link>
     )
 }
 

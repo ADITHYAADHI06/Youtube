@@ -1,18 +1,19 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleSidebar } from '../store/appSlice';
+import { BsSearch } from 'react-icons/bs';
+
 
 
 const Head = () => {
 
     const dispatch = useDispatch();
 
-
     const toggleMenuHandler = () => {
         dispatch(toggleSidebar());
     }
     return (
-        <div className='grid h-[10vh] grid-flow-col grid-cols-12 px-6 py-2 shadow-lg'>
+        <div className='grid h-[10vh] grid-flow-col grid-cols-12 px-6 py-2 shadow-xl shadow-slate-200'>
             <div className='flex col-span-1 my-auto'>
                 <img
                     onClick={() => toggleMenuHandler()}
@@ -31,7 +32,7 @@ const Head = () => {
                     <input type='text' className='px-5 border border-gray-400 rounded-l-full h-full w-full' placeholder='Search' />
                 </div>
                 <button className="bg-gray-200 rounded-r-full px-4 pr-5 py-3  ">
-                    🔍
+                    <BsSearch />
                 </button>
             </div>
             <div className='col-span-1 ml-auto p-0 mt-1'>
