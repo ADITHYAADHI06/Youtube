@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { toggleSidebar } from '../store/appSlice';
 import { BsSearch } from 'react-icons/bs';
+import { IoIosSearch } from 'react-icons/io';
 import { YOUTUBE_AUTOSUGGESTIONS_API } from '../utils/constants';
+import { addSearchSugestions } from '../store/searchSlice';
 
 const Head = () => {
     const [searchText, SetsearchText] = useState("");
@@ -10,20 +12,29 @@ const Head = () => {
     const [showAutoSuggetions, SetshowAutoSuggetions] = useState(false);
     const dispatch = useDispatch();
 
+    const search = useSelector((store) => store.search)
+
     const toggleMenuHandler = () => {
         dispatch(toggleSidebar());
     }
     const getSuggestions = async () => {
         // console.log("called - " + searchText);
-        const res = await fetch(YOUTUBE_AUTOSUGGESTIONS_API + searchText);
-        const data = await res.json();
-        SetsearchSuggetions(data[1]);
+        if (searchText) {
+            const res = await fetch(YOUTUBE_AUTOSUGGESTIONS_API + searchText);
+            const data = await res.json();
+            SetsearchSuggetions(data[1]);
+            dispatch(addSearchSugestions({ [searchText]: data[1] }))
+        }
     }
 
     useEffect(() => {
-        let timer = setTimeout(() => { getSuggestions() }, 200)
-        return () => {
-            clearTimeout(timer);
+        if (search[searchText]) {
+            SetsearchSuggetions(search[searchText]);
+        } else {
+            let timer = setTimeout(() => { getSuggestions() }, 200)
+            return () => {
+                clearTimeout(timer);
+            }
         }
     }, [searchText]);
 
@@ -44,14 +55,20 @@ const Head = () => {
             </div>
             <div className='col-span-10 flex justify-center my-auto mt-2'>
                 <div className='s-input w-6/12'>
-                    <input type='text' className='px-5 border border-gray-400 rounded-l-full h-full w-full' onFocus={() => { SetshowAutoSuggetions(true); }} onBlur={() => { SetshowAutoSuggetions(false) }} onChange={(e) => { SetsearchText(e.target.value) }} value={searchText} placeholder='Search' />
+                    <input type='text' className='px-5 border border-gray-400 rounded-l-full h-full w-full'
+                        onFocus={(e) => { SetshowAutoSuggetions(true); if (e.target.value === "") { SetshowAutoSuggetions(false) } }}
+                        onBlur={() => { SetshowAutoSuggetions(false); }}
+                        onChange={(e) => { SetsearchText(e.target.value); if (e.target.value !== "") { SetshowAutoSuggetions(true) } else { SetshowAutoSuggetions(false); } }} value={searchText} placeholder='Search'
+
+                    />
                 </div>
                 {
                     searchSuggetions && showAutoSuggetions && (
-                        <div className='absolute top-16 mr-10 w-[490px] bg-white text-black'>
+                        <div className='absolute top-16 mr-12 py-3 w-[630px] bg-white text-black border border-gray-100 shadow-lg rounded-sm'>
                             <ul>
                                 {searchSuggetions.map((suggestion, i) => {
-                                    return <li key={i} >🔍 {suggestion} </li>
+                                    return <li key={i} className='py-2 shadow-sm hover:bg-gray-100 text-lg' >
+                                        <IoIosSearch className='inline-block mx-4 text-xl' />{suggestion}</li>
                                 })}
                             </ul>
                         </div>)
