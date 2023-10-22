@@ -4,7 +4,7 @@ import { closeSidebar } from "../store/appSlice"
 import { useSearchParams } from 'react-router-dom';
 import VideoMetaData from './VideoMetaData';
 import VideoDiscription from './VideoDiscription';
-import Comments from './Commnets';
+import CommentsContainer from './CommentsContainer';
 
 const Watchpage = () => {
     const [singleVideo, SetsingleVideo] = useState(null);
@@ -44,7 +44,7 @@ const Watchpage = () => {
                 <div className='my-3 p-3 bg-gray-100 rounded-lg'>
                     <VideoDiscription publishedAt={publishedAt} viewCount={viewCount} description={description} />
                 </div>
-                <Comments />
+                <CommentsContainer />
             </div>
             <div className='col-span-3'>reco</div>
         </div>

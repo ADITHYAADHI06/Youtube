@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { toggleSidebar } from '../store/appSlice';
 import { BsSearch } from 'react-icons/bs';
 import { IoIosSearch } from 'react-icons/io';
-import { YOUTUBE_AUTOSUGGESTIONS_API } from '../utils/constants';
+import { YOUTUBE_AUTOSUGGESTIONS_API, YOUTUBE_SEARCH_API } from '../utils/constants';
 import { addSearchSugestions } from '../store/searchSlice';
+import { addMainVideos } from '../store/videoSlice';
+import { Link } from 'react-router-dom';
 
 const Head = () => {
     const [searchText, SetsearchText] = useState("");
@@ -25,6 +27,13 @@ const Head = () => {
             SetsearchSuggetions(data[1]);
             dispatch(addSearchSugestions({ [searchText]: data[1] }))
         }
+    }
+
+    const handleSearchQuery = async () => {
+        const res = await fetch(YOUTUBE_SEARCH_API + searchText + "&key=" + process.env.REACT_APP_YOUTUBE_API_KEY);
+        const data = await res.json();
+        // console.log(data?.items);
+        // dispatch(addMainVideos(data?.items))
     }
 
     useEffect(() => {
@@ -59,7 +68,6 @@ const Head = () => {
                         onFocus={(e) => { SetshowAutoSuggetions(true); if (e.target.value === "") { SetshowAutoSuggetions(false) } }}
                         onBlur={() => { SetshowAutoSuggetions(false); }}
                         onChange={(e) => { SetsearchText(e.target.value); if (e.target.value !== "") { SetshowAutoSuggetions(true) } else { SetshowAutoSuggetions(false); } }} value={searchText} placeholder='Search'
-
                     />
                 </div>
                 {
@@ -74,8 +82,10 @@ const Head = () => {
                         </div>)
                 }
 
-                <button className="bg-gray-200 rounded-r-full px-4 pr-5 py-3  ">
+                <button className="bg-gray-200 rounded-r-full px-4 pr-5 py-3 " onClick={(e) => { e.preventDefault(); handleSearchQuery() }} >
+                    {/* <Link to={`results?v=${searchText}`} > */}
                     <BsSearch />
+                    {/* </Link> */}
                 </button>
             </div>
 

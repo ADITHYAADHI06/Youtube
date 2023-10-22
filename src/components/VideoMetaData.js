@@ -14,7 +14,7 @@ const VideoMetaData = (props) => {
     const getChannel = async () => {
         const res = await fetch(`${YOUTUBE_CHANNEL_API}${process.env.REACT_APP_YOUTUBE_API_KEY}&id=${channelId}`)
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         SetChannel(data);
     }
 
