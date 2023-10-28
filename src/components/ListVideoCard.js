@@ -2,11 +2,11 @@ import React from 'react'
 
 const ListVideoCard = ({ video }) => {
     const { snippet, statistics } = video;
-    const { channelId, channelTitle, description, publishedAt, thumbnails, tags, title } = snippet;
+    const { channelTitle, description, publishedAt, thumbnails, tags, title } = snippet;
 
     return (
 
-        <div className='w-full  grid  grid-cols-12 gap-5 mb-5'>
+        <div className='w-full  grid  grid-cols-12 gap-5 mb-6'>
             <div className='h-52 col-span-4 '>
                 <img src={thumbnails.maxres.url} className='h-full w-full object-fill rounded-2xl' alt='title' />
             </div>
