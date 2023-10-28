@@ -16,7 +16,7 @@ const VideoCard = ({ video }) => {
     const { viewCount } = statistics;
 
     return (
-        <Link to={`watch?v=${id}`} onClick={toggleMenuHandler} className='card col-span-3 '>
+        <Link to={`watch?v=${id}`} onClick={toggleMenuHandler} className='card col-span-3 mb-8'>
             <div className='h-56 '>
                 <img className='h-full w-full rounded-2xl' src={thumbnails?.maxres?.url} alt="thumbnail" />
             </div>

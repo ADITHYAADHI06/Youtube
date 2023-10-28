@@ -3,12 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const videoSlice = createSlice({
     name: "video",
     initialState: {
-        main_videos: [],
+        searchResultVidoes: [],
+        resultVideos: []
     },
     reducers: {
-        addMainVideos: (state, action) => { state.main_videos = action.payload; }
+        setSearchResultVidoes: (state, action) => { state.searchResultVidoes = action.payload; },
+        setResultVideos: (state, action) => { state.resultVideos = action.payload; },
     }
 });
 
-export const { addMainVideos } = videoSlice.actions
+export const { setSearchResultVidoes, setResultVideos } = videoSlice.actions;
 export default videoSlice.reducer;

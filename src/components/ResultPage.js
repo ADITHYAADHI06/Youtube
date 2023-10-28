@@ -1,41 +1,55 @@
-import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { YOUTUBE_SINGLEChannelBYID_API, YOUTUBE_SINGLEPlayListBYID_API, YOUTUBE_SINGLEVIDEOBYID_API } from '../utils/constants';
+import { setResultVideos } from '../store/videoSlice';
+import SearchResultContainer from './SearchResultContainer';
 
 const ResultPage = () => {
-    const mainVideos = useSelector((store) => store.video.main_videos)
-    // console.log(mainVideos);
+    const dispatch = useDispatch();
+    const searchResultVidoes = useSelector((store) => store.video.searchResultVidoes)
 
-    let VideoIDArray = mainVideos.filter((video) => {
-        return video.id.kind === "youtube#video";
-    }).map((v) => { return v.id.videoId; })
-    let text = VideoIDArray.join("%2C")
-    // console.log(text);
-
-    const data = async () => {
+    if (searchResultVidoes.length === 0) {
         console.log("called");
-        const res = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${text}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`);
-        const data = await res.json();
-        console.log(data);
-
-    }
-
-    useEffect(() => {
-        data();
-    }, [])
-
-    if (mainVideos === null) {
         return null;
     }
-    return (
-        <div>
-            <div>
-                {/* <div>
-                    <img alt='img-search' src={ } />
-                </div>
-                <div>
 
-                </div> */}
-            </div>
+    const fetchResultCompleteDetails = async (id) => {
+        const res = await fetch(YOUTUBE_SINGLEVIDEOBYID_API + id + "&key=" + process.env.REACT_APP_YOUTUBE_API_KEY);
+        const data = res.json();
+        return data;
+    }
+    const fetchResultPlayListCompleteDetails = async (id) => {
+        const res = await fetch(YOUTUBE_SINGLEPlayListBYID_API + id + "&key=" + process.env.REACT_APP_YOUTUBE_API_KEY);
+        const data = res.json();
+        return data;
+    }
+    const fetchResultChannelCompleteDetails = async (id) => {
+        const res = await fetch(YOUTUBE_SINGLEChannelBYID_API + id + "&key=" + process.env.REACT_APP_YOUTUBE_API_KEY);
+        const data = res.json();
+        return data;
+    }
+
+    const resultMainData = async () => {
+        let VideoIDArray = searchResultVidoes.map((item) => {
+            if (item.id.kind === "youtube#video") {
+                return fetchResultCompleteDetails(item.id.videoId);
+            }
+            if (item.id.kind === "youtube#playlist") {
+                return fetchResultPlayListCompleteDetails(item.id.playlistId);
+            }
+            if (item.id.kind === "youtube#channel") {
+                return fetchResultChannelCompleteDetails(item.id.channelId);
+            }
+        })
+        let videosDetails = await Promise.all(VideoIDArray);
+        dispatch(setResultVideos(videosDetails))
+    }
+
+    resultMainData();
+
+    return (
+        <div className='w-full flex justify-center'>
+            <SearchResultContainer />
         </div>
     )
 }
