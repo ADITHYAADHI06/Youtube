@@ -19,7 +19,7 @@ const SideBar = () => {
         return null
     }
     return (
-        <div className='w-60 py-4 h-[90vh] shadow-lg'>
+        <div className='w-60 py-4 h-screen shadow-lg'>
             <ul >
                 <Link to="/"><li className={activePage === "Home" ? " py-2 px-4 pl-8 my-1 font-semibold bg-gray-200 " : "py-2 px-4 pl-8 my-1 hover:bg-gray-200"} onClick={() => { setactivePage("Home") }}><GoHomeFill className='inline-block w-6 h-6 mr-3' /> Home</li></Link>
                 <Link to="/"><li className={activePage === "Shorts" ? " py-2 px-4 pl-8 my-1 font-semibold bg-gray-200 " : "py-2 px-4 pl-8 my-1 hover:bg-gray-200"} onClick={() => { setactivePage("Shorts") }}><SiShortcut className='inline-block w-6 h-6 mr-3' /> Shorts</li></Link>

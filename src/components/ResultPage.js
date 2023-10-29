@@ -7,9 +7,10 @@ import SearchResultContainer from './SearchResultContainer';
 const ResultPage = () => {
     const dispatch = useDispatch();
     const searchResultVidoes = useSelector((store) => store.video.searchResultVidoes)
+    console.log(searchResultVidoes);
 
     if (searchResultVidoes.length === 0) {
-        console.log("called");
+        // console.log("called");
         return null;
     }
 
