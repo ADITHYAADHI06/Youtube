@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ListChannelCard = ({ channel }) => {
-    console.log(channel);
+    // console.log(channel);
 
     const { customUrl, description, thumbnails, title } = channel.items[0].snippet;
     const { subscriberCount } = channel.items[0].statistics

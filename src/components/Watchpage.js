@@ -13,7 +13,7 @@ import { IoMdSend } from 'react-icons/io';
 const Watchpage = () => {
     const [singleVideo, SetsingleVideo] = useState(null);
     const [inputValue, setInputValue] = useState("");
-    const [hideChat, setHideChat] = useState(false);
+    const [hideChat, setHideChat] = useState(null);
 
     const dispatch = useDispatch();
     const [searchparams] = useSearchParams();
@@ -34,15 +34,20 @@ const Watchpage = () => {
         fetchSingleVideo();
     }, []);
 
+    useEffect(() => {
+        if (singleVideo) {
+            setHideChat(liveBroadcastContent);
+        }
+    }, [singleVideo?.liveBroadcastContent])
+
 
     if (!singleVideo) return null;
+    console.log(singleVideo);
 
     let { snippet, contentDetails, statistics } = singleVideo;
-    let { publishedAt, channelId, title, description, channelTitle, tags } = snippet;
-    console.log(channelId);
+    let { publishedAt, channelId, title, description, channelTitle, tags, liveBroadcastContent } = snippet;
     let { duration } = contentDetails;
     let { viewCount, likeCount, commentCount } = statistics;
-
     return (
         <div className='w-screen grid grid-cols-12 gap-8 mt-8'>
             <div className='col-span-8 flex flex-col ml-14'>

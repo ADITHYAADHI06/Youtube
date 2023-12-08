@@ -5,26 +5,26 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 
 const commentData = [
     {
-        name: "akshay",
-        comment: "orem lorem lorem  fheej he loemrem lorem",
+        name: "Dhanush S",
+        comment: "Good Video, I liked it ❤️",
         timespan: "2 weeks ago",
         reply: [
             {
-                name: "shetty",
-                comment: "hoi banni",
+                name: "Rajesh G",
+                comment: "Its good",
                 timespan: "2 weeks ago",
                 reply: [
                     {
-                        name: "adithya",
+                        name: "Abhijith",
                         comment: "heyy hello",
                         timespan: "2 weeks ago",
                         reply: [{
-                            name: "shetty",
-                            comment: "hoi banni",
+                            name: "Suman Shetty",
+                            comment: "Hi",
                             timespan: "2 weeks ago",
                             reply: [
                                 {
-                                    name: "adithya",
+                                    name: "eshwar",
                                     comment: "heyy hello",
                                     timespan: "2 weeks ago",
                                     reply: [
@@ -40,13 +40,13 @@ const commentData = [
 
             },
             {
-                name: "shetty",
-                comment: "hoi banni",
+                name: "Faijhu",
+                comment: "Namsthe Brooo ....",
                 timespan: "2 weeks ago",
                 reply: [
                     {
-                        name: "adithya",
-                        comment: "heyy hello",
+                        name: "Mohan",
+                        comment: "Hello",
                         timespan: "2 weeks ago",
                         reply: [
 
@@ -58,18 +58,18 @@ const commentData = [
         ]
     },
     {
-        name: "akshay saini",
-        comment: "orem lorem lorem  fheej he loemrem lorem",
+        name: "akshay",
+        comment: "Thank you for the help!",
         timespan: "2 weeks ago",
         reply: [
             {
-                name: "shetty",
-                comment: "hoi banni",
+                name: "praveen",
+                comment: "Hey",
                 timespan: "2 weeks ago",
                 reply: [
                     {
                         name: "adithya",
-                        comment: "heyy hello",
+                        comment: "Hi Everyone",
                         timespan: "2 weeks ago",
                         reply: [
 
@@ -80,13 +80,13 @@ const commentData = [
 
             },
             {
-                name: "shetty",
-                comment: "hoi banni",
+                name: "loki",
+                comment: "hello Viewers",
                 timespan: "2 weeks ago",
                 reply: [
                     {
                         name: "adithya",
-                        comment: "heyy hello",
+                        comment: "heyy ",
                         timespan: "2 weeks ago",
                         reply: [
 
@@ -100,17 +100,17 @@ const commentData = [
     },
 
     {
-        name: "ak",
-        comment: "orem lorem lorem  fheej he loemrem lorem",
+        name: "kash gowda",
+        comment: "Big Fan of You",
         timespan: "2 weeks ago",
         reply: [
             {
-                name: "shetty",
-                comment: "hoi banni",
+                name: "Rahul",
+                comment: "hey",
                 timespan: "2 weeks ago",
                 reply: [
                     {
-                        name: "adithya",
+                        name: "Arjun",
                         comment: "heyy hello",
                         timespan: "2 weeks ago",
                         reply: [
@@ -122,12 +122,12 @@ const commentData = [
 
             },
             {
-                name: "shetty",
-                comment: "hoi banni",
+                name: "Kitty",
+                comment: "hello Everyone",
                 timespan: "2 weeks ago",
                 reply: [
                     {
-                        name: "adithya",
+                        name: "Raju",
                         comment: "heyy hello",
                         timespan: "2 weeks ago",
                         reply: [
@@ -141,17 +141,17 @@ const commentData = [
         ]
     },
     {
-        name: "Adithya",
-        comment: "orem lorem lorem  fheej he loemrem lorem",
+        name: "Hithesh raj",
+        comment: "Thank you so much I love it",
         timespan: "2 weeks ago",
         reply: [
             {
                 name: "shetty",
-                comment: "hoi banni",
+                comment: "hey",
                 timespan: "2 weeks ago",
                 reply: [
                     {
-                        name: "adithya",
+                        name: "Dammu",
                         comment: "heyy hello",
                         timespan: "2 weeks ago",
                         reply: [
@@ -163,12 +163,12 @@ const commentData = [
 
             },
             {
-                name: "shetty",
-                comment: "hoi banni",
+                name: "Dinesh",
+                comment: "hi",
                 timespan: "2 weeks ago",
                 reply: [
                     {
-                        name: "adithya",
+                        name: "gopi",
                         comment: "heyy hello",
                         timespan: "2 weeks ago",
                         reply: [
@@ -188,26 +188,23 @@ const commentData = [
 const CommentsContainer = () => {
 
 
-
-
     const CommentCard = ({ comment, setRepliesName, showRepliesName }) => {
         const [showReplies, setshowReplies] = useState(false);
         return (
             <div >
                 <div className='flex justify-between'>
-
                     <div className='flex gap-4  my-6 rounded-lg'>
                         <div className=''><img alt='user' className='w-10 h-10' src={`https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png`} /></div>
                         <div>
                             <div className='flex'>
-                                <p className='font-semibold'>@{comment.name}</p>
-                                <p className=''> {comment.timespan}</p>
+                                <p className='font-semibold'>@{comment.name} </p>
+                                <p className='ml-2'>{comment.timespan}</p>
                             </div>
-                            <p>{comment.comment}</p>
+                            <p className='text-lg'>{comment.comment}</p>
                             <div className='flex gap-3 items-center font-semibold'>
                                 <span> <AiOutlineLike className='inline-block w-6 h-6 mr-3' /><span className='text-lg'>1K </span></span>  <span className='text-2xl font-normal text-gray-400 inline-block'>|</span> <AiOutlineDislike className='my-auto w-6 h-6 mt-[6px]' />
                             </div>
-                            <button onClick={() => { setRepliesName(`${comment.name}`); setshowReplies(!showReplies) }}>replies</button>
+                            <button onClick={() => { setRepliesName(`${comment.name}`); setshowReplies(!showReplies) }} className='text-blue-600'>replies</button>
                         </div>
                     </div>
                     <div>
@@ -225,6 +222,8 @@ const CommentsContainer = () => {
         )
     }
 
+
+
     const CommentList = ({ comments }) => {
         const [showRepliesName, setRepliesName] = useState("");
 
@@ -241,6 +240,10 @@ const CommentsContainer = () => {
             </>
         )
     }
+
+
+
+
     return (
         <div>
             <div className='flex gap-8'>

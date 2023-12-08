@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ListVideoCard = ({ video }) => {
     const { snippet, statistics, id, } = video;
-    console.log(video);
+    // console.log(video);
     const { channelTitle, description, publishedAt, thumbnails, tags, title, liveBroadcastContent } = snippet;
     console.log(liveBroadcastContent);
     // console.log(video.contentDetails.duration);

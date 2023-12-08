@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { YOUTUBE_SINGLEChannelBYID_API, YOUTUBE_SINGLEPlayListBYID_API, YOUTUBE_SINGLEVIDEOBYID_API } from '../utils/constants';
 import { setResultVideos } from '../store/videoSlice';
 import SearchResultContainer from './SearchResultContainer';
+import ButtonListContainer from './ButtonListContainer';
 
 const ResultPage = () => {
     const dispatch = useDispatch();
     const searchResultVidoes = useSelector((store) => store.video.searchResultVidoes)
-    console.log(searchResultVidoes);
+    // console.log(searchResultVidoes);
 
     if (searchResultVidoes.length === 0) {
         // console.log("called");
@@ -49,7 +50,7 @@ const ResultPage = () => {
     resultMainData();
 
     return (
-        <div className='w-full flex justify-center'>
+        <div className='w-full flex justify-center flex-col'>
             <SearchResultContainer />
         </div>
     )

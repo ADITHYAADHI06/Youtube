@@ -8,7 +8,7 @@ const SearchResultContainer = () => {
     const resultVideos = useSelector((state) => state.video.resultVideos)
 
     if (resultVideos.length === 0) {
-        return null
+        return null;
     }
     return (
         <div className='w-[1100px] py-10 pt-12 flex justify-center flex-col'>

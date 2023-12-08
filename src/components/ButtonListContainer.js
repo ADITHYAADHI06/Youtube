@@ -7,7 +7,7 @@ const ButtonListContainer = () => {
 
     let buttonNames = ["All", "Javascript", "Games", "Latest", "Mixers", "Hot", "Live", "Music", "Videos", "Top Rated"];
     return (
-        <div className=' flex my-6 gap-4 '>
+        <div className=' flex my-6 gap-4 overflow-x-scroll no-scrollbar lg:px-5'>
             {
                 buttonNames.map((Title, i) => <ButtonList key={i} Title={Title} ClickedButton={ClickedButton} SetClickedButton={SetClickedButton} />)
             }
@@ -16,3 +16,4 @@ const ButtonListContainer = () => {
 }
 
 export default ButtonListContainer
+

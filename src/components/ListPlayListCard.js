@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ListPlayListCard = ({ channel }) => {
-    console.log(channel?.items[0]);
+    // console.log(channel?.items[0]);
 
     const { contentDetails, snippet, kind } = channel?.items[0];
     const { channelTitle, description, thumbnails, title } = channel?.items[0]?.snippet
