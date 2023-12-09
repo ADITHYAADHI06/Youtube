@@ -9,11 +9,11 @@ const VideoDiscription = ({ publishedAt, viewCount, description }) => {
     }
     return (
         <>
-            <div className=''>{viewCount} views 22 spet 2023</div>
+            <div className='text-[13px] sm:text-sm'>{viewCount} views 22 spet 2023</div>
             {
-                descriptionState ? <div className=''>{description}</div> : null
+                descriptionState ? <div className='text-xs sm:text-sm mt-2'>{description}</div> : null
             }
-            <button onClick={() => { handleDescription() }}>{descriptionState ? "... less" : "... more"}</button>
+            <button className='text-xs sm:text-sm' onClick={() => { handleDescription() }}>{descriptionState ? "... less" : "... more"}</button>
         </>
     )
 }

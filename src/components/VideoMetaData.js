@@ -30,25 +30,27 @@ const VideoMetaData = (props) => {
 
     return (
         <>
-            <h2 className='my-3 text-2xl font-semibold'>{Videotitle}</h2>
-            <div className='flex justify-between '>
-                <div className='flex gap-4'>
-                    <img className='w-12 h-12' src={thumbnails?.default?.url} alt="channel_logo" />
-                    <div className='my-auto'>
-                        <h4 className='font-semibold text-lg mb-0 '>{channelTitle}</h4>
-                        <p className='text-gray-700 text-sm'>{subscriberCount / 1000}k subscribers</p>
+            <h2 className='my-3 sm:text-xl md:text-2xl font-semibold'>{Videotitle}</h2>
+            <div className='flex justify-between flex-col gap-5 sm:gap-0 sm:flex-row '>
+                <div className='flex justify-between   gap-1 sm:gap-20 min-[380px]:gap-4 '>
+                    <div className='flex justify-between gap-2 min-[380px]:gap-5 sm:gap-3'>
+                        <img className='h-8 w-8 sm:w-12 sm:h-12 rounded-full m-auto' src={thumbnails?.default?.url} alt="channel_logo" />
+                        <div className='my-auto'>
+                            <h4 className='font-semibold text-[15px] min-[380px]:text-sm sm:text-base md:text-lg mb-0 '>{channelTitle}</h4>
+                            <p className='text-gray-700 text-xs min-[380px]:text-sm sm:text-sm md:text-sm'>{subscriberCount / 1000}k subscribers</p>
+                        </div>
                     </div>
                     <div className='my-auto'>
-                        <button className='px-4 py-2 text-sm bg-black  text-white font-semibold rounded-3xl '>Subscribe</button>
+                        <button className='px-4 py-2 text-xs min-[380px]:text-sm bg-black  text-white font-semibold rounded-3xl '>Subscribe</button>
                     </div>
                 </div>
-                <div className='flex items-center text-lg gap-2'>
+                <div className='flex items-center text-sm sm:text-lg gap-2'>
                     <div className='flex gap-3 items-center bg-gray-200  px-4 py-1 font-semibold rounded-3xl'>
-                        <span> <AiOutlineLike className='inline-block w-6 h-6 mr-3' /><span className='text-lg'>{parseInt(likeCount / 1000)}K </span></span>  <span className='text-2xl font-normal text-gray-400 inline-block'>|</span> <AiOutlineDislike className='my-auto w-6 h-6 mt-[6px]' />
+                        <span> <AiOutlineLike className='inline-block w-4 h-4 min-[380px]:w-[18px] min-[380px]:h-[18px] sm:w-6 sm:h-6 mr-3' /><span className='text-xs lg:text-lg my-auto hidden min-[380px]:block '>{parseInt(likeCount / 1000)}K </span></span>  <span className='text-xs sm:text-2xl font-normal text-gray-400 inline-block'>|</span> <AiOutlineDislike className='my-auto w-[18px] h-[18px] sm:w-6 sm:h-6 mt-[6px]' />
                     </div>
-                    <div className='px-4 py-1 bg-gray-200 font-semibold rounded-3xl'><PiShareFatLight className='inline-block' />  Share </div>
-                    <div className='px-4 py-1 bg-gray-200 font-semibold rounded-3xl'><TfiDownload className='inline-block' />  Download</div>
-                    <div className='px-5 py-2 bg-gray-200 font-semibold rounded-full'><BsThreeDots /></div>
+                    <div className='px-4 py-1 sm:hidden lg:block bg-gray-200 font-semibold rounded-3xl'><PiShareFatLight className='inline-block hidden min-[380px]:block' />  Share </div>
+                    <div className='px-4 py-1 sm:hidden lg:block  bg-gray-200 font-semibold rounded-3xl'><TfiDownload className='inline-block hidden min-[380px]:block' />  Download</div>
+                    <div className='px-5 py-2  bg-gray-200 font-semibold rounded-full'><BsThreeDots /></div>
                 </div>
             </div>
         </>

@@ -78,7 +78,7 @@ const Head = () => {
                 </div>
                 {
                     searchSuggetions && showAutoSuggetions && (
-                        <div className='absolute top-16 mr-0 sm:mr-12 py-3  sm:w-screen md:w-[630px] bg-white z-40 text-black border border-gray-100 shadow-lg rounded-xl sm:rounded-sm'>
+                        <div className='absolute top-[70px] sm:top-16  left-0 sm:left-auto sm:mr-12 py-3 w-screen sm:w-screen md:w-[630px] bg-white z-40 text-black border border-gray-100 shadow-lg rounded-xl sm:rounded-sm'>
                             <ul>
                                 {searchSuggetions.map((suggestion, i) => {
                                     return <li key={i} onClick={(e) => { console.log("seting auto"); e.preventDefault(); SetsearchText(suggestion); handleSearchQuery(); SetshowAutoSuggetions(false); }} className='py-2 shadow-sm hover:bg-gray-100 text-lg ' >

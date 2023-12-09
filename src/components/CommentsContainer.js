@@ -196,25 +196,24 @@ const CommentsContainer = () => {
                     <div className='flex gap-4  my-6 rounded-lg'>
                         <div className=''><img alt='user' className='w-10 h-10' src={`https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png`} /></div>
                         <div>
-                            <div className='flex'>
+                            <div className='flex text-sm sm:text-base'>
                                 <p className='font-semibold'>@{comment.name} </p>
                                 <p className='ml-2'>{comment.timespan}</p>
                             </div>
-                            <p className='text-lg'>{comment.comment}</p>
+                            <p className='text-base sm:text-lg'>{comment.comment}</p>
                             <div className='flex gap-3 items-center font-semibold'>
-                                <span> <AiOutlineLike className='inline-block w-6 h-6 mr-3' /><span className='text-lg'>1K </span></span>  <span className='text-2xl font-normal text-gray-400 inline-block'>|</span> <AiOutlineDislike className='my-auto w-6 h-6 mt-[6px]' />
+                                <span> <AiOutlineLike className='inline-block h-4 w-4 sm:w-6 sm:h-6 mr-3' /><span className='text-sm sm:text-lg'>1K </span></span>  <span className='text-xs sm:text-2xl font-normal text-gray-400 inline-block'>|</span> <AiOutlineDislike className='my-auto h-4 w-4 sm:w-6 sm:h-6 mt-[6px]' />
                             </div>
-                            <button onClick={() => { setRepliesName(`${comment.name}`); setshowReplies(!showReplies) }} className='text-blue-600'>replies</button>
+                            <button onClick={() => { setRepliesName(`${comment.name}`); setshowReplies(!showReplies) }} className='text-blue-600 text-[13px] sm:text-base'>replies</button>
                         </div>
                     </div>
                     <div>
-                        <BsThreeDotsVertical className="inline-block text-xl" />
+                        <BsThreeDotsVertical className="inline-block text-xl mt-7" />
                     </div>
                 </div>
                 {
-                    showRepliesName === comment.name && showReplies ? (<div className='pl-14'>
+                    showRepliesName === comment.name && showReplies ? (<div className='pl-3 lg:pl-14'>
                         <CommentList comments={comment?.reply} />
-                        {/* {(comment?.reply !== "[]") && comment.reply.map((comment) => { return <CommentCard comment={comment} /> })} */}
                     </div>) : <> </>
                 }
 
@@ -246,11 +245,11 @@ const CommentsContainer = () => {
 
     return (
         <div>
-            <div className='flex gap-8'>
+            <div className='flex justify-between px-2 sm:px-6 pt-5'>
                 <div>{1000} Comments</div>
                 <div>Sort by</div>
             </div>
-            <div className='my-5'>
+            <div className='mb-5'>
                 <CommentList comments={commentData} />
             </div>
         </div>
