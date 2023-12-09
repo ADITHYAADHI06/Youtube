@@ -49,8 +49,8 @@ const Head = () => {
     }, [searchText]);
 
     return (
-        <div className='grid grid-flow-col grid-cols-12 px-6 pr-4 sm:pr-6 py-2 shadow-xl shadow-slate-200'>
-            <div className='flex justify-center items-center col-span-1 my-auto'>
+        <div className='grid grid-flow-col grid-cols-12 px-6 min-[1000px]:px-6 pr-4 sm:pr-6 lg:pr-6  py-3 shadow-xl shadow-slate-200'>
+            <div className='flex min-[1100px]:justify-center items-center col-span-2 sm:col-span-3 lg:col-span-2  my-auto'>
                 <img
                     onClick={() => toggleMenuHandler()}
                     className="h-8 mr-5 cursor-pointer"
@@ -59,13 +59,13 @@ const Head = () => {
                 />
                 <Link to="/" onClick={() => { SetsearchText("") }}>
                     <img
-                        className="h-7 w-28"
+                        className="h-[26px] hidden sm:block"
                         alt="youtube-logo"
                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/2560px-YouTube_Logo_2017.svg.png"
                     />
                 </Link>
             </div>
-            <div className='col-span-12 sm:col-span-10 flex justify-center my-auto '>
+            <div className='col-span-12 sm:col-span-10 flex sm:justify-center my-auto '>
                 <div className='s-input w-9/12 sm:w-6/12'>
                     <input type='text' className='px-5 border border-gray-400 rounded-l-full h-full w-full'
                         onFocus={(e) => { SetshowAutoSuggetions(true); if (e.target.value === "") { SetshowAutoSuggetions(false) } }}
@@ -78,7 +78,7 @@ const Head = () => {
                 </div>
                 {
                     searchSuggetions && showAutoSuggetions && (
-                        <div className='absolute top-16 mr-0 dm:mr-12 py-3 w-screen sm:w-[630px] bg-white z-40 text-black border border-gray-100 shadow-lg rounded-xl sm:rounded-sm'>
+                        <div className='absolute top-16 mr-0 sm:mr-12 py-3  sm:w-screen md:w-[630px] bg-white z-40 text-black border border-gray-100 shadow-lg rounded-xl sm:rounded-sm'>
                             <ul>
                                 {searchSuggetions.map((suggestion, i) => {
                                     return <li key={i} onClick={(e) => { console.log("seting auto"); e.preventDefault(); SetsearchText(suggestion); handleSearchQuery(); SetshowAutoSuggetions(false); }} className='py-2 shadow-sm hover:bg-gray-100 text-lg ' >

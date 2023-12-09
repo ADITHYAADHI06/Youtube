@@ -11,7 +11,7 @@ const SearchResultContainer = () => {
         return null;
     }
     return (
-        <div className='w-[1100px] py-10 pt-12 flex justify-center flex-col'>
+        <div className='px-6 sm:px-10 md:px-10 lg:px-24 min-[1300px]:px-52 py-10 pt-4 lg:pt-12 flex justify-center flex-col'>
             {
                 resultVideos.map((item, i) => {
                     if (item.items[0].kind === "youtube#channel") {

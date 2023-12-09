@@ -50,7 +50,7 @@ const ResultPage = () => {
     resultMainData();
 
     return (
-        <div className='w-full flex justify-center flex-col'>
+        <div className='w-screen flex justify-center'>
             <SearchResultContainer />
         </div>
     )

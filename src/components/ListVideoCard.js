@@ -33,8 +33,8 @@ const ListVideoCard = ({ video }) => {
     // console.log(durationArray);
     return (
         <Link to={`watch?v=${id}`} >
-            <div className='w-full  grid  grid-cols-12 gap-5 mb-6'>
-                <div className='h-52 relative col-span-4 -z-10 '>
+            <div className='w-full  grid  grid-cols-12 gap-1  sm:gap-5 mb-10 sm:mb-6'>
+                <div className='h-80  sm:h-40 md:h-52  min-[900px]:h-64 min-[1050px]:h-80 xl:h-[350px] relative col-span-12 sm:col-span-5 -z-10 '>
                     <img src={thumbnails?.maxres?.url || thumbnails?.standard?.url || thumbnails?.high?.url || thumbnails?.medium?.url} className='h-full w-full object-fill rounded-2xl' alt='title' />
                     {
                         liveBroadcastContent === "live" ? <span className='bg-red-600 rounded-md text-white py-0 px-3  absolute bottom-2 right-2'>Live</span> : <span className='bg-black py-0 px-3 rounded-lg text-white absolute bottom-2 right-1'>{durationArray[0]}{durationArray?.[1] ?? 0}:{durationArray?.[2] ?? 0}{durationArray?.[3] ?? 0}</span>
@@ -42,11 +42,15 @@ const ListVideoCard = ({ video }) => {
 
 
                 </div>
-                <div className='col-span-8'>
-                    <h3 className='text-xl font-normal'>{title}</h3>
-                    <p className='text-gray-500 '>14K Views | 4 Years ago</p>
-                    <p className='text-gray-500 my-2'>{channelTitle}</p>
-                    <p className='text-black-700'>{description.slice(0, 128)}</p>
+                <div className='sm:hidden col-span-12'>
+                    <h3 className='text-lg sm:text-lg lg:text-xl font-normal'>{title}</h3>
+                    <p className='text-gray-500 text-xs sm:text-sm lg:text-base '>{channelTitle} | 14K Views | 4 Years ago</p>
+                </div>
+                <div className='hidden sm:block sm:col-span-7'>
+                    <h3 className='text-xl sm:text-lg lg:text-xl  xl:text-2xl font-normal'>{title}</h3>
+                    <p className='text-gray-500 text-xs sm:text-sm lg:text-sm xl:text-[14px] xl:mt-1  '>14K Views | 4 Years ago</p>
+                    <p className='text-gray-500 text-sm my-2  xl:text-[18px] xl:my-5'>{channelTitle}</p>
+                    <p className='text-black-700 hidden sm:block sm:text-xs md:text-sm lg:text-sm xl:text-base'>{description.slice(0, 128)}</p>
                 </div>
             </div>
         </Link>
