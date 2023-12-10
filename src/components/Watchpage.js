@@ -49,10 +49,10 @@ const Watchpage = () => {
     let { duration } = contentDetails;
     let { viewCount, likeCount, commentCount } = statistics;
     return (
-        <div className='w-screen grid grid-cols-12 px-2 md:px-8 lg:px-10 gap-8 mt-8'>
-            <div className='col-span-12  min-[1315px]:col-span-8 flex flex-col justify-center min-[1315px]:ml-14'>
+        <div className='w-screen grid grid-cols-12 px-2 md:px-8 lg:px-2 gap-8 mt-8'>
+            <div className='col-span-12  min-[1279px]:col-span-8 flex flex-col justify-center min-[1279px]:ml-6'>
                 <div className='px min-[380px]:px-0 md:px-6 lg:px-0'>
-                    <iframe className='w-full h-[280px] sm:h-[400px] md:h-[380px] lg:h-[600px] rounded-xl' src={`https://www.youtube-nocookie.com/embed/${searchparams.get("v")}?si=yjXv64NvH11-y6zG`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                    <iframe className='w-full h-[280px] sm:h-[400px] md:h-[380px] lg:h-[550px] min-[1170px]:h-[400px] min-[1279px]:h-[450px] min-[1300px]:h-[600px] rounded-xl' src={`https://www.youtube-nocookie.com/embed/${searchparams.get("v")}?si=yjXv64NvH11-y6zG`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                 </div>
                 <div>
                     <VideoMetaData channelId={channelId} Videotitle={title} channelTitle={channelTitle} likeCount={likeCount} />
@@ -60,7 +60,7 @@ const Watchpage = () => {
                 <div className='my-3 p-3 bg-gray-100 rounded-lg'>
                     <VideoDiscription publishedAt={publishedAt} viewCount={viewCount} description={description} />
                 </div>
-                <div className='block min-[1315px]:hidden bg-slate-100 border h-max border-black rounded-3xl'>
+                <div className='block min-[1279px]:hidden bg-slate-100 border h-max border-black rounded-3xl'>
 
                     {
                         hideChat ? <></> : (<>
@@ -107,7 +107,7 @@ const Watchpage = () => {
                 </div>
                 <CommentsContainer />
             </div>
-            <div className='hidden min-[1315px]:block col-span-4 mr-9 bg-slate-100 border h-max border-black rounded-3xl'>
+            <div className='hidden custom-display  col-span-4 mr-9 bg-slate-100 border h-max border-black rounded-3xl'>
 
                 {
                     hideChat ? <></> : (<>

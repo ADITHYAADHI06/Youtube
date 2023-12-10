@@ -17,5 +17,11 @@
             scrollbar-width: none;
             /* Firefox */
         }
+
+        @media (min-width: 1279px) {
+            .custom-display {
+                display: block;
+            }
+        }
     }
 }

@@ -14,6 +14,8 @@ export const YOUTUBE_SINGLEVIDEOBYID_API = "https://youtube.googleapis.com/youtu
 export const YOUTUBE_SINGLEPlayListBYID_API = "https://youtube.googleapis.com/youtube/v3/playlists?part=snippet%2CcontentDetails&id="
 
 export const YOUTUBE_SINGLEChannelBYID_API = "https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id="
+export const SUGGESTED_VIDEO_URL = 'https://youtube-v31.p.rapidapi.com/search?relatedToVideoId='
+
 
 export const OFFSET_LIVE_MSG_COUNT = 25;
 
