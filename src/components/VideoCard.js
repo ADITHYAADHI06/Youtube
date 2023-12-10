@@ -16,8 +16,8 @@ const VideoCard = ({ video }) => {
     const { viewCount } = statistics;
 
     return (
-        <Link to={`watch?v=${id}`} onClick={toggleMenuHandler} className='card col-span-12 sm:col-span-6 md:col-span-6 min-[1000px]:col-span-4 mb-8 md:mb-5 lg:mb-8 hover:bg-slate-200 p-1'>
-            <div className='h-72 lg:h-[305px] '>
+        <Link to={`watch?v=${id}`} onClick={toggleMenuHandler} className='card col-span-12 sm:col-span-6 md:col-span-6 min-[1000px]:col-span-4 min-[1350px]:col-span-3 mb-8 md:mb-5 lg:mb-8 hover:bg-slate-200 p-1'>
+            <div className='h-72 lg:h-[240px] min-[1350px]:h-64 '>
                 <img className='h-full w-full rounded-xl' src={thumbnails?.maxres?.url || thumbnails?.high?.url} alt="thumbnail" />
             </div>
             <div className='title'>
