@@ -3,13 +3,16 @@ import { useSelector } from 'react-redux'
 import ListVideoCard from './ListVideoCard'
 import ListChannelCard from './ListChannelCard'
 import ListPlayListCard from './ListPlayListCard'
+import Shimmer from "./Shimmer"
 
 const SearchResultContainer = () => {
+
     const resultVideos = useSelector((state) => state.video.resultVideos)
 
     if (resultVideos.length === 0) {
-        return null;
+        return <Shimmer />;
     }
+
     return (
         <div className='px-6 sm:px-10 md:px-10 lg:px-24 min-[1300px]:px-52 py-10 pt-4 lg:pt-12 flex justify-center flex-col'>
             {

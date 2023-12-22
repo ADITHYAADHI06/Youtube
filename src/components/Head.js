@@ -31,8 +31,9 @@ const Head = () => {
         }
     }
 
-    const handleSearchQuery = async () => {
-        const res = await fetch(YOUTUBE_MAIN_API + searchText + "&key=" + process.env.REACT_APP_YOUTUBE_API_KEY);
+    const handleSearchQuery = async (suggestion) => {
+        dispatch(SetsearchText(suggestion));
+        const res = await fetch(YOUTUBE_MAIN_API + suggestion + "&key=" + process.env.REACT_APP_YOUTUBE_API_KEY);
         const data = await res.json();
         dispatch(setSearchResultVidoes(data.items))
     }
@@ -81,8 +82,8 @@ const Head = () => {
                         <div className='absolute top-[70px] sm:top-16  left-0 sm:left-auto sm:mr-12 py-3 w-screen sm:w-screen md:w-[630px] bg-white z-40 text-black border border-gray-100 shadow-lg rounded-xl sm:rounded-sm'>
                             <ul>
                                 {searchSuggetions.map((suggestion, i) => {
-                                    return <li key={i} onClick={(e) => { console.log("seting auto"); e.preventDefault(); SetsearchText(suggestion); handleSearchQuery(); SetshowAutoSuggetions(false); }} className='py-2 shadow-sm hover:bg-gray-100 text-lg ' >
-                                        <IoIosSearch className='inline-block mx-4 text-xl' /><Link to={`results?v=${searchText}`} > {suggestion}</Link> </li>
+                                    return <li key={i} onClick={(e) => { console.log(suggestion); e.preventDefault(); handleSearchQuery(suggestion); SetshowAutoSuggetions(false); }} className='py-2 shadow-sm hover:bg-gray-100 text-lg ' >
+                                        <IoIosSearch className='inline-block mx-4 text-xl' /><Link to={`results?v=${suggestion}`} > {suggestion}</Link> </li>
                                 })}
                             </ul>
                         </div>)
