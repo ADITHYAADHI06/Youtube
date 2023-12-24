@@ -5,7 +5,7 @@ const ButtonListContainer = () => {
 
     const [ClickedButton, SetClickedButton] = useState("All");
 
-    let buttonNames = ["All", "Javascript", "Games", "Latest", "Mixers", "Hot", "Live", "Music", "Videos", "Top Rated"];
+    let buttonNames = ["All", "Foods", "Games", "Latest", "Mixers", "Hot", "Live", "Music", "Videos", "Top Rated"];
     return (
         <div className=' flex my-6 gap-4 overflow-x-scroll no-scrollbar lg:px-5'>
             {

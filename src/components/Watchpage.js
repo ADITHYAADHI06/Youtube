@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { closeSidebar } from "../store/appSlice"
-import { useSearchParams } from 'react-router-dom';
 import VideoMetaData from './VideoMetaData';
 import VideoDiscription from './VideoDiscription';
 import CommentsContainer from './CommentsContainer';
@@ -9,20 +8,20 @@ import LiveChat from './LiveChat';
 import { addmsg } from '../store/chatSlice';
 import { BsThreeDotsVertical, BsChevronDown } from 'react-icons/bs';
 import { IoMdSend } from 'react-icons/io';
+import useSingleVideo from '../customhooks/useSingleVideo';
+import { useSearchParams } from 'react-router-dom';
+import useLiveChatStatus from '../customhooks/useLiveChatStatus';
 
 const Watchpage = () => {
-    const [singleVideo, SetsingleVideo] = useState(null);
-    const [inputValue, setInputValue] = useState("");
-    const [hideChat, setHideChat] = useState(null);
 
+    const [inputValue, setInputValue] = useState("");
     const dispatch = useDispatch();
+
     const [searchparams] = useSearchParams();
 
-    const fetchSingleVideo = async () => {
-        const res = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${searchparams.get("v")}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`)
-        const data = await res.json();
-        SetsingleVideo(data?.items?.[0]);
-    }
+    //geting data from custom hook.
+    let singleVideo = useSingleVideo();
+    let [liveChat, setLiveChat] = useLiveChatStatus(singleVideo?.snippet?.liveBroadcastContent)
 
     const handleLiveMsg = () => {
         dispatch(addmsg({ name: "ADITHYA SHETTY", msg: inputValue }))
@@ -31,14 +30,7 @@ const Watchpage = () => {
 
     useEffect(() => {
         dispatch(closeSidebar());
-        fetchSingleVideo();
     }, []);
-
-    useEffect(() => {
-        if (singleVideo) {
-            setHideChat(liveBroadcastContent);
-        }
-    }, [singleVideo?.liveBroadcastContent])
 
 
     if (!singleVideo) return null;
@@ -63,7 +55,7 @@ const Watchpage = () => {
                 <div className='block min-[1279px]:hidden bg-slate-100 border h-max border-black rounded-3xl'>
 
                     {
-                        hideChat ? <></> : (<>
+                        liveChat ? (<>
                             <div className='px-4 flex justify-between py-3'>
                                 <div className='flex gap-2'>
                                     <p className='text-xl'>Top Chat</p>
@@ -97,12 +89,12 @@ const Watchpage = () => {
 
                             </div>
                         </>
-                        )
+                        ) : <></>
                     }
 
 
-                    <div className={hideChat ? 'w-full flex justify-center font-semibold border-none rounded-3xl' : 'w-full flex justify-center font-semibold border rounded-b-3xl border-t-black'} >
-                        <button className={hideChat ? "px-1 py-1 min-[380px]:py-2 min-[380px]:px-4 text-base min-[380px]:text-xl w-full hover:bg-gray-200  hover:rounded-3xl" : 'px-1 py-1 min-[380px]:py-2 min-[380px]:px-4 text-base min-[380px]:text-xl w-full hover:bg-gray-200  hover:rounded-b-3xl'} onClick={() => { setHideChat(!hideChat) }} >{hideChat ? "Show Live Chat" : "Hide Chat"}</button>
+                    <div className={liveChat ? 'w-full flex justify-center font-semibold border-none rounded-3xl' : 'w-full flex justify-center font-semibold border rounded-b-3xl border-t-black'} >
+                        <button className={liveChat ? "px-1 py-1 min-[380px]:py-2 min-[380px]:px-4 text-base min-[380px]:text-xl w-full hover:bg-gray-200  hover:rounded-3xl" : 'px-1 py-1 min-[380px]:py-2 min-[380px]:px-4 text-base min-[380px]:text-xl w-full hover:bg-gray-200  hover:rounded-b-3xl'} onClick={() => { setLiveChat(!liveChat) }} >{liveChat ? "Show Live Chat" : "Hide Chat"}</button>
                     </div>
                 </div>
                 <CommentsContainer />
@@ -110,7 +102,7 @@ const Watchpage = () => {
             <div className='hidden custom-display  col-span-4 mr-9 bg-slate-100 border h-max border-black rounded-3xl'>
 
                 {
-                    hideChat ? <></> : (<>
+                    liveChat ? (<>
                         <div className='px-4 flex justify-between py-3'>
                             <div className='flex gap-2'>
                                 <p className='text-xl'>Top Chat</p>
@@ -144,12 +136,12 @@ const Watchpage = () => {
 
                         </div>
                     </>
-                    )
+                    ) : <></>
                 }
 
 
-                <div className={hideChat ? 'w-full flex justify-center font-semibold border-none rounded-3xl' : 'w-full flex justify-center font-semibold border rounded-b-3xl border-t-black'} >
-                    <button className={hideChat ? "py-2 px-4 text-xl w-full hover:bg-gray-200  hover:rounded-3xl" : 'py-2 px-4 text-xl w-full hover:bg-gray-200  hover:rounded-b-3xl'} onClick={() => { setHideChat(!hideChat) }} >{hideChat ? "Show Live Chat" : "Hide Chat"}</button>
+                <div className={liveChat ? 'w-full flex justify-center font-semibold border-none rounded-3xl' : 'w-full flex justify-center font-semibold border rounded-b-3xl border-t-black'} >
+                    <button className={liveChat ? "py-2 px-4 text-xl w-full hover:bg-gray-200  hover:rounded-3xl" : 'py-2 px-4 text-xl w-full hover:bg-gray-200  hover:rounded-b-3xl'} onClick={() => { setLiveChat(!liveChat) }} >{liveChat ? "Show Live Chat" : "Hide Chat"}</button>
                 </div>
             </div>
         </div>
