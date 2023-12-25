@@ -18,24 +18,36 @@ const Head = () => {
 
     const searchText = useSelector((store) => store.main.searchText)
 
-
     const toggleMenuHandler = () => {
         dispatch(toggleSidebar());
     }
+
     const getSuggestions = async () => {
         if (searchText) {
-            const res = await fetch(YOUTUBE_AUTOSUGGESTIONS_API + searchText);
-            const data = await res.json();
-            SetsearchSuggetions(data[1]);
-            dispatch(addSearchSugestions({ [searchText]: data[1] }))
+            try {
+                const res = await fetch(YOUTUBE_AUTOSUGGESTIONS_API + searchText);
+                const data = await res.json();
+                SetsearchSuggetions(data[1]);
+                dispatch(addSearchSugestions({ [searchText]: data[1] }))
+            } catch (error) {
+                console.log(error);
+            }
         }
+
     }
 
-    const handleSearchQuery = async (suggestion) => {
+    const handleSearchClick = async (suggestion, e) => {
+        e.preventDefault();
         dispatch(SetsearchText(suggestion));
-        const res = await fetch(YOUTUBE_MAIN_API + suggestion + "&key=" + process.env.REACT_APP_YOUTUBE_API_KEY);
-        const data = await res.json();
-        dispatch(setSearchResultVidoes(data.items))
+        SetshowAutoSuggetions(false);
+        try {
+            const res = await fetch(YOUTUBE_MAIN_API + suggestion + "&key=" + process.env.REACT_APP_YOUTUBE_API_KEY);
+            const data = await res.json();
+            dispatch(setSearchResultVidoes(data.items))
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     useEffect(() => {
@@ -82,14 +94,14 @@ const Head = () => {
                         <div className='absolute top-[70px] sm:top-16  left-0 sm:left-auto sm:mr-12 py-3 w-screen sm:w-screen md:w-[630px] bg-white z-40 text-black border border-gray-100 shadow-lg rounded-xl sm:rounded-sm'>
                             <ul>
                                 {searchSuggetions.map((suggestion, i) => {
-                                    return <li key={i} onClick={(e) => { console.log(suggestion); e.preventDefault(); handleSearchQuery(suggestion); SetshowAutoSuggetions(false); }} className='py-2 shadow-sm hover:bg-gray-100 text-lg ' >
+                                    return <li key={i} onClick={(e) => { handleSearchClick(suggestion, e); }} className='py-2 shadow-sm hover:bg-gray-100 text-lg ' >
                                         <IoIosSearch className='inline-block mx-4 text-xl' /><Link to={`results?v=${suggestion}`} > {suggestion}</Link> </li>
                                 })}
                             </ul>
                         </div>)
                 }
 
-                <button className="bg-gray-200 rounded-r-full px-4 pr-5 py-3 " onClick={searchText !== "" ? (e) => { e.preventDefault(); handleSearchQuery(); SetshowAutoSuggetions(false) } : console.log("empty")} >
+                <button className="bg-gray-200 rounded-r-full px-4 pr-5 py-3 " onClick={searchText !== "" ? (e) => { handleSearchClick(searchText, e); } : console.log("empty")} >
                     <Link to={searchText === "" ? "/" : `results?v=${searchText}`} >
                         <BsSearch />
                     </Link>

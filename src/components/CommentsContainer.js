@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import { formatYouTubeComments } from '../utils/FormatNumbers';
 
 
 const commentData = [
@@ -185,7 +186,7 @@ const commentData = [
 
 
 
-const CommentsContainer = () => {
+const CommentsContainer = ({ totalComments }) => {
 
 
     const CommentCard = ({ comment, setRepliesName, showRepliesName }) => {
@@ -242,11 +243,10 @@ const CommentsContainer = () => {
 
 
 
-
     return (
         <div>
             <div className='flex justify-between px-2 sm:px-6 pt-5'>
-                <div>{1000} Comments</div>
+                <div>{formatYouTubeComments(totalComments)} Comments</div>
                 <div>Sort by</div>
             </div>
             <div className='mb-5'>

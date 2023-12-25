@@ -4,6 +4,7 @@ import { TfiDownload } from 'react-icons/tfi';
 import { PiShareFatLight } from 'react-icons/pi';
 import { BsThreeDots } from 'react-icons/bs';
 import { YOUTUBE_CHANNEL_API } from '../utils/constants';
+import { formatYouTubeComments } from '../utils/FormatNumbers';
 
 const VideoMetaData = (props) => {
 
@@ -37,7 +38,7 @@ const VideoMetaData = (props) => {
                         <img className='h-8 w-8 sm:w-12 sm:h-12 rounded-full m-auto' src={thumbnails?.default?.url} alt="channel_logo" />
                         <div className='my-auto'>
                             <h4 className='font-semibold text-[15px] min-[380px]:text-sm sm:text-base md:text-lg mb-0 '>{channelTitle}</h4>
-                            <p className='text-gray-700 text-xs min-[380px]:text-sm sm:text-sm md:text-sm'>{subscriberCount / 1000}k subscribers</p>
+                            <p className='text-gray-700 text-xs min-[380px]:text-sm sm:text-sm md:text-sm'>{formatYouTubeComments(subscriberCount)} subscribers</p>
                         </div>
                     </div>
                     <div className='my-auto'>
@@ -46,7 +47,7 @@ const VideoMetaData = (props) => {
                 </div>
                 <div className='flex items-center text-sm sm:text-lg gap-2'>
                     <div className='flex gap-3 items-center flex-row bg-gray-200  px-4 py-1 font-semibold rounded-3xl'>
-                        <span> <AiOutlineLike className='inline w-4 h-4 min-[380px]:w-[18px] min-[380px]:h-[18px] sm:w-6 sm:h-6 min-[1279px]:h-5 min-[1279px]:w-5 mr-3' /><span className='text-xs lg:text-lg my-auto hidden min-[380px]:inline '>{parseInt(likeCount / 1000)}K </span></span>  <span className='text-xs sm:text-2xl  min-[1279px]:text-xl min-[1279px]:text-xl font-normal text-gray-400 inline'>|</span> <AiOutlineDislike className='my-auto w-[18px] h-[18px] sm:w-6 sm:h-6 mt-[6px] min-[1279px]:h-5 min-[1279px]:w-5' />
+                        <span> <AiOutlineLike className='inline w-4 h-4 min-[380px]:w-[18px] min-[380px]:h-[18px] sm:w-6 sm:h-6 min-[1279px]:h-5 min-[1279px]:w-5 mr-3' /><span className='text-xs lg:text-lg my-auto hidden min-[380px]:inline '>{likeCount} </span></span>  <span className='text-xs sm:text-2xl  min-[1279px]:text-xl min-[1279px]:text-xl font-normal text-gray-400 inline'>|</span> <AiOutlineDislike className='my-auto w-[18px] h-[18px] sm:w-6 sm:h-6 mt-[6px] min-[1279px]:h-5 min-[1279px]:w-5' />
                     </div>
                     <div className='px-4 py-1 sm:hidden lg:inline bg-gray-200 font-semibold rounded-3xl'><PiShareFatLight className='inline hidden min-[380px]:inline' />  Share </div>
                     <div className='px-4 py-1 sm:hidden lg:inline  bg-gray-200 font-semibold rounded-3xl'><TfiDownload className='inline hidden min-[380px]:inline' />  Download</div>

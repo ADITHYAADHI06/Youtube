@@ -8,10 +8,14 @@ const useSingleVideo = () => {
     const [searchparams] = useSearchParams();
 
     const fecthData = async () => {
-        const res = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${searchparams.get("v")}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`)
-        const data = await res.json();
-
-        SetsingleVideo(data?.items?.[0]);
+        try {
+            const res = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${searchparams.get("v")}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`)
+            const data = await res.json();
+            SetsingleVideo(data?.items?.[0]);
+        } catch (error) {
+            console.log(error);
+            SetsingleVideo(error);
+        }
     }
 
     useEffect(() => {
