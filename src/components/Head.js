@@ -25,7 +25,13 @@ const Head = () => {
     const getSuggestions = async () => {
         if (searchText) {
             try {
-                const res = await fetch(YOUTUBE_AUTOSUGGESTIONS_API + searchText);
+                const res = await fetch(YOUTUBE_AUTOSUGGESTIONS_API + searchText, {
+                    method: "GET",
+                    headers: {
+                        "access-control-allow-origin": "*",
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                });
                 const data = await res.json();
                 SetsearchSuggetions(data[1]);
                 dispatch(addSearchSugestions({ [searchText]: data[1] }))
